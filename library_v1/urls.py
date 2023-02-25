@@ -19,7 +19,8 @@ from library_v1 import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('register', views.register , name='registerrrrrrr'),
-    path('login', views.login , name='loginnnnn'),
-    path('books/', include('books.urls'))
+    path('register', views.register, name='register'),
+    path('login', views.login_user, name='login'),
+    path('books/', include('books.urls')),
+    path('publishers/', include('publisher.urls'))
 ]

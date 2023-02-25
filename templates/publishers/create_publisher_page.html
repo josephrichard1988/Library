@@ -1,0 +1,50 @@
+{% extends '../base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="content-wrapper">
+    <section class="content">
+        <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">DataTable with default features</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>Publisher Name</th>
+                    <th>Publisher Contact</th>
+                    <th>Publisher Address</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for publisher in publisher_table_data %}
+                <tr>
+                  <td>{{publisher.publisher_name}}</td>
+                  <td>{{publisher.publisher_contact}}</td>
+                  <td>{{publisher.publisher_address}}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <tr>
+                  <th>Publisher Name</th>
+                  <th>Publisher Contact</th>
+                  <th>Publisher Address</th>
+                </tr>
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            {{publisher_form}}
+            <input type="submit" value="Submit">
+        </form>
+
+    </section>
+</div>
+
+{% endblock %}
