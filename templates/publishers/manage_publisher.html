@@ -2,6 +2,15 @@
 {% load static %}
 {% block content %}
 
+<script type="text/javascript">
+  function delete_publisher(id, name)
+  {
+    if (confirm("Kindly confirm deletion of Room : "+name) == true) {
+      window.location.href="/publishers/delete-publisher-page/"+id;
+    }
+  }
+</script>
+
 <div class="content-wrapper">
     <section class="content">
         <div class="card">
@@ -13,25 +22,34 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
+                    <th>Publisher Id</th>
                     <th>Publisher Name</th>
                     <th>Publisher Contact</th>
                     <th>Publisher Address</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for publisher in publisher_table_data %}
                 <tr>
+                  <td>{{publisher.id}}</td>
                   <td>{{publisher.publisher_name}}</td>
                   <td>{{publisher.publisher_contact}}</td>
                   <td>{{publisher.publisher_address}}</td>
+                  <td><a href="{% url 'update_publisher_page' publisher.id %}"><button type="button" class="btn btn-block btn-primary">Edit</button></a></td>
+                  <td><button type="button" class="btn btn-block btn-danger" onclick=delete_publisher({{publisher.id}},"{{publisher.publisher_name}}")>Delete</button></td>
                 </tr>
                 {% endfor %}
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th>Publisher Name</th>
-                  <th>Publisher Contact</th>
-                  <th>Publisher Address</th>
+                    <th>Publisher Id</th>
+                    <th>Publisher Name</th>
+                    <th>Publisher Contact</th>
+                    <th>Publisher Address</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
                 </tfoot>
               </table>
